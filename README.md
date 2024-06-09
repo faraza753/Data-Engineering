@@ -75,9 +75,7 @@ And the requirements.txt file with the required dependencies are as shown below.
 You should run 
 ```pip install -r requirements.txt```
 to install the dependencies.
-
-
-Entrypoint.sh file
+```Entrypoint.sh``` file
 The entrypoint.sh file contains the commands to be executed once the attached container has been initialised. To make it work as expected, it is advised you run chmod +x scripts/entrypoint.sh in the root directory to convert the script to executable.
 
 
@@ -85,25 +83,25 @@ The entrypoint.sh file contains the commands to be executed once the attached co
 
 Firstly, we use Docker Compose to spin up containers for the project. The dockerfile.yml below creates the following containers:
 
-Zookeeper: Zookeeper acts as a distributed configuration and synchronization service. It’s particularly vital for Apache Kafka to manage its distributed nature.
+- Zookeeper: Zookeeper acts as a distributed configuration and synchronization service. It’s particularly vital for Apache Kafka to manage its distributed nature.
 
-Apache Kafka Broker: Kafka Broker handles the storage, retrieval, and transfer of messages (records). It’s a part of the Kafka distributed streaming platform.
+- Apache Kafka Broker: Kafka Broker handles the storage, retrieval, and transfer of messages (records). It’s a part of the Kafka distributed streaming platform.
 
-Schema Registry: The Schema Registry provides a serving layer for your metadata. It is a RESTful interface for storing and retrieving Avro schemas which is particularly useful when your Kafka streams need to understand the schema of the records.
+- Schema Registry: The Schema Registry provides a serving layer for your metadata. It is a RESTful interface for storing and retrieving Avro schemas which is particularly useful when your Kafka streams need to understand the schema of the records.
 
-Control Center: This is a web-based interface for managing and monitoring your Kafka environments. It provides features like data inspection, topic creation, and setting up Kafka Connect.
+- Control Center: This is a web-based interface for managing and monitoring your Kafka environments. It provides features like data inspection, topic creation, and setting up Kafka Connect.
 
-Spark Master: Spark Master is the point of entry to any Spark functionality. It is responsible for distributing work across the Spark Cluster.
+- Spark Master: Spark Master is the point of entry to any Spark functionality. It is responsible for distributing work across the Spark Cluster.
 
-Spark Worker: Spark Worker is responsible for executing the tasks that the master node assigns it and returning the computed results.
+- Spark Worker: Spark Worker is responsible for executing the tasks that the master node assigns it and returning the computed results.
 
-Cassandra DB: Cassandra is a NoSQL database designed to handle large amounts of data across many nodes without any single point of failure. It’s ideal for high-velocity data like streaming data.
+- Cassandra DB: Cassandra is a NoSQL database designed to handle large amounts of data across many nodes without any single point of failure. It’s ideal for high-velocity data like streaming data.
 
-Apache Airflow Webserver: Apache Airflow’s web server is the interface where you will define and monitor your workflows (DAGs). Airflow is commonly used for orchestrating complex ETL tasks.
+- Apache Airflow Webserver: Apache Airflow’s web server is the interface where you will define and monitor your workflows (DAGs). Airflow is commonly used for orchestrating complex ETL tasks.
 
-Scheduler: The Scheduler in Airflow triggers the tasks and constructs the data pipelines. It ensures tasks are executed at the right time or when triggered by other tasks.
+- Scheduler: The Scheduler in Airflow triggers the tasks and constructs the data pipelines. It ensures tasks are executed at the right time or when triggered by other tasks.
 
-PostgresDB: PostgreSQL is a relational database. It’s used here as the metadata database for Apache Airflow and can also serve as a general-purpose data store.
+- PostgresDB: PostgreSQL is a relational database. It’s used here as the metadata database for Apache Airflow and can also serve as a general-purpose data store.
 
 Below is the content of the dockerfile.yml used to orchestrate the spinning up process.
 
@@ -141,6 +139,7 @@ In the root directory, create a new file called spark_stream.py and add the foll
 Then run this script in your root directory to submit the job to your spark cluster:
 
 ```spark-submit --master spark://localhost:7077 spark_stream.py```
+
 If you goto localhost:9090 you should see the spark master and worker setup and the worker state is ALIVE.
 
 

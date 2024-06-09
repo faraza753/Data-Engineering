@@ -61,16 +61,19 @@ Step-by-Step Guide
 Step 1: Folder Structure and Installation
 The folder structure for this project is 2 folders and 5 files with the structure and names below:
 
-├── dags
-│   └── kafka_stream.py
-├── docker-compose.yml
-├── requirements.txt
-├── script
-│   └── entrypoint.sh
-└── spark_stream.py
+- ├── dags
+- │   └── kafka_stream.py
+- ├── docker-compose.yml
+- ├── requirements.txt
+- ├── script
+- │   └── entrypoint.sh
+- └── spark_stream.py
 
 2 directories, 5 files
-And the requirements.txt file with the required dependencies are as shown below. You should run pip install -r requirements.txt to install the dependencies.
+And the requirements.txt file with the required dependencies are as shown below. 
+You should run 
+```pip install -r requirements.txt```
+to install the dependencies.
 
 
 Entrypoint.sh file
@@ -97,7 +100,7 @@ Attention: The AIRFLOW__WEBSERVER__SECRET_KEY must be the same for the webserver
 
 To spin the containers up, run the script below:
 
-docker compose up -d
+```docker compose up -d```
 
 starting up the containers
 Step 3: Streaming Data into Apache Kafka
@@ -121,20 +124,20 @@ In the root directory, create a new file called spark_stream.py and add the foll
 
 Then run this script in your root directory to submit the job to your spark cluster:
 
-spark-submit --master spark://localhost:7077 spark_stream.py
+```spark-submit --master spark://localhost:7077 spark_stream.py```
 If you goto localhost:9090 you should see the spark master and worker setup and the worker state is ALIVE.
 
 
 Now, if you want to see the data on cassandra, you need to connect to the cluster using:
 
-docker exec -it cassandra cqlsh -u cassandra -p cassandra localhost 9042
+```docker exec -it cassandra cqlsh -u cassandra -p cassandra localhost 9042```
 
 When you run DESCRIBE spark_streams.created_users; you should see the keyspace and table created successfully.
 
 
 To get the data streamed into cassandra, run:
 
-SELECT * FROM spark_streams.created_users;
+```SELECT * FROM spark_streams.created_users;```
 
 
 

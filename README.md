@@ -57,9 +57,9 @@ The project is designed with the following components:
     ```
 
 
-#Step-by-Step Guide
+# Step-by-Step Guide
 
-#Step 1: Folder Structure and Installation
+## Step 1: Folder Structure and Installation
 The folder structure for this project is 2 folders and 5 files with the structure and names below:
 
 - ├── dags
@@ -81,7 +81,7 @@ Entrypoint.sh file
 The entrypoint.sh file contains the commands to be executed once the attached container has been initialised. To make it work as expected, it is advised you run chmod +x scripts/entrypoint.sh in the root directory to convert the script to executable.
 
 
-##Step 2: Setting up Docker Containers
+## Step 2: Setting up Docker Containers
 
 Firstly, we use Docker Compose to spin up containers for the project. The dockerfile.yml below creates the following containers:
 
@@ -116,7 +116,7 @@ To spin the containers up, run the script below:
 
 starting up the containers
 
-##Step 3: Streaming Data into Apache Kafka
+## Step 3: Streaming Data into Apache Kafka
 
 Once the docker containers are up and running, create a new a file in the dags directory (stream_kafka.py), here is it’s content:
 
@@ -132,7 +132,9 @@ control center landing page
 users_created topic
 
 viewing users created topic data
-Step 4: Streaming Data into Cassandra
+
+## Step 4: Streaming Data into Cassandra
+
 In the root directory, create a new file called spark_stream.py and add the following content to it.
 
 
